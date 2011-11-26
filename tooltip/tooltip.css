@@ -1,0 +1,17 @@
+.tooltip-box {
+  display: none;
+  position: absolute;
+  top: 0;
+  background: #fff;
+  text-align: left;
+  padding: 10px;
+  width: 300px;
+  -moz-box-shadow: 0 0 10px #b2b2b2;
+  -webkit-box-shadow: 0 0 10px #b2b2b2;
+  box-shadow: 0 0 10px #b2b2b2;
+}
+
+.ie7 .tooltip-box,
+.ie8 .tooltip-box {
+  border: 1px solid #ccc;
+}

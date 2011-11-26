@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8;chrome=1" />
+<meta name="robots" content="index, follow" />
+<title>jQuery Slideshow Plugin</title>
+<style type="text/css">
+a img { border:0 }
+
+#controls { margin:5px 0 0 0; padding:0; list-style:none; overflow:hidden; zoom:1 }
+#controls a { color:#c4832e }
+#controls li { float:left }
+#controls li a { display:block; padding:2px 5px; margin-right:4px; border:1px solid #DF8F26; background:#FFF1DE }
+#controls li a.active { background:#ffa733; color:#fff }
+</style>
+<link rel="stylesheet" href="jquery.slideshow.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<h2>Linked images, captions, and embedded controls</h2>
+<div>
+	<div class="slideshow" style="height:300px">
+		<a href="" title="Test Title 1"><img src="http://placehold.it/400x300/d18888/000" alt="" /></a>
+		<a href="" title="Test Title 2"><img src="http://placehold.it/400x300/9fd188/000" alt="" /></a>
+		<a href="" title="Test Title 3"><img src="http://placehold.it/400x300/8892d1/000" alt="" /></a>
+	</div>
+</div>
+
+<h2>Images only, no captions, external controls</h2>
+<div>
+	<div id="slideshow2" style="height:300px">
+		<img src="http://placehold.it/400x300/d18888/000" alt="" />
+		<img src="http://placehold.it/400x300/9fd188/000" alt="" />
+		<img src="http://placehold.it/400x300/8892d1/000" alt="" />
+	</div>
+
+	<p>
+		<a class="prev" href="#">Previous</a> &nbsp;|&nbsp; <a class="next" href="#">Next</a> &nbsp;|&nbsp; <a class="start" href="#">Start</a> &nbsp;|&nbsp; <a class="stop" href="#">Stop</a>
+	</p>
+</div>
+
+
+<h2>Images only, captions, embedded controls</h2>
+<div>
+	<div class="slideshow" style="height:300px">
+		<img src="http://placehold.it/400x300/d18888/000" alt="" title="Caption 1" />
+		<img src="http://placehold.it/400x300/9fd188/000" alt="" title="Caption 2" />
+		<img src="http://placehold.it/400x300/8892d1/000" alt="" title="Caption 3" />
+	</div>
+</div>
+
+
+<h2>Using the onChange callback to toggle classes on external navigation</h2>
+<div>
+	<div id="slideshow-controls" style="height:300px">
+		<img src="http://placehold.it/400x300/d18888/000" alt="" title="Caption 1" />
+		<img src="http://placehold.it/400x300/9fd188/000" alt="" title="Caption 2" />
+		<img src="http://placehold.it/400x300/8892d1/000" alt="" title="Caption 3" />
+	</div>
+
+	<ul id="controls">
+	<li><a href="#" class="active">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">3</a></li>
+	</ul>
+</div>
+
+<h2>Fade in content, not images</h2>
+<div>
+	<div class="slideshow" style="width:420px; height:220px; border:1px solid #000;">
+		<div style="height:200px;width:400px;background:#efefef;padding:10px">
+			<p style="font-weight:bold">slide one</p>
+			<p>The quick brown fox jumped over the lazy dog.</p>
+		</div>
+		<div style="height:200px;width:400px;background:#efefef;padding:10px">
+			<p style="font-weight:bold">slide two</p>
+			<p>Lorem ipsum.</p>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.slideshow.js"></script>
+<script type="text/javascript">
+$("div.slideshow").slideshow();
+
+// external controls demo
+$("#slideshow2").slideshow({ controls:false });
+
+// toggling classes on external controls
+var controls = $("#controls");
+var slideshow = $("#slideshow-controls").slideshow({
+	controls:false,
+	onChange: function(index){
+		controls.find("a").removeClass("active").filter(function(){
+			return $(this).text() == index;
+		}).addClass("active");
+	}
+});
+
+controls.find("a").bind("click", function(){
+	var num = parseInt( $(this).text() );
+	slideshow.slideshow("move", num);
+	return false;
+});
+
+$("p a").click(function(){
+	$(this).parent().prev().slideshow( this.className );
+	return false;
+});
+</script>
+
+</div>
+
+</body>
+</html>

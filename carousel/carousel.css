@@ -1,0 +1,21 @@
+.carousel {
+    width: 415px;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel ul {
+    overflow: hidden;
+    width: 999em;
+    position: relative;
+}
+
+.carousel li {
+    float: left;
+    margin-right: 5px;
+}
+
+.carousel img {
+    display: block;
+}
+
