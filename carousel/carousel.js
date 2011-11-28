@@ -15,7 +15,6 @@
 
     Carousel.prototype = {
         init: function() {
-            console.log(this.nextLink, this.prevLink)
             this.nextLink.bind("click", $.proxy(this.next, this));
             this.prevLink.bind("click", $.proxy(this.prev, this));
 
@@ -32,7 +31,7 @@
 
         prev: function(event) {
             event && event.preventDefault();
-            this.itemIndex = this.itemIndex - this.opts.itemsPerTransition;
+            this.itemIndex = (this.itemIndex || this.items.length) - this.opts.itemsPerTransition;
             this.animate();
         },
 
