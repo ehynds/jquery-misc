@@ -88,12 +88,3 @@
     };
 
 })(jQuery);
-
-$(".carousel").carousel({
-    autoTransition: true,
-    onScrollEnd: function(data) {
-        $(this.container).find(".count").text(function() {
-            return "Page # of #".replace("#", data.currPage).replace("#", data.totalPages);
-        });
-    }
-});
